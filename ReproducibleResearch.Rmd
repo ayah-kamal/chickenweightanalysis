@@ -1,0 +1,60 @@
+---
+title: "Chicken Weights Analysis"
+author: "Ayah Kamal"
+date: "9/28/2021"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Descriptive Statistics 
+
+This is an R Markdown document used to showcase an example of **Chicken Weight Analysis**.  
+
+
+```{r libraries, echo=FALSE, include=FALSE}
+library(tidyverse)
+library(DT)
+```
+```{r chicwt, echo=FALSE}
+datatable(chickwts %>% 
+             group_by(feed) %>% 
+              summarise(n = length(feed),
+                        Average = mean(weight),
+                        SD = sd(weight)),
+           options = list(
+  pageLength = 10,
+  lengthMenu = c(5, 10, 15, 20)
+))
+```
+
+## Plots
+
+
+```{r boxplot, echo=FALSE}
+boxplot(weight~feed,
+        data = chickwts)
+```
+```{r scatterplot, echo=FALSE}
+plot.default(chickwts$feed,chickwts$weight,'p')
+```
+
+
+## Inferential Statistics 
+
+The one-way ANOVA summary:
+```{r anova, echo=FALSE}
+chick_lm <- lm(weight ~ feed, data = chickwts)
+chick_aov <- anova(chick_lm)
+datatable(chick_aov,
+          options = list(dom = 't', ordering=FALSE))
+```
+
+
+
