@@ -4,9 +4,7 @@ The project contains the Rmarkdown code file that showcases some of the concepts
 - Data Visualization
 - Descriptive Statistics
 - Inferential Statistics 
-</br>
-Additionally, the project includes the outputted HTML document of the Rmarkdown file, which can also be viewed here: [HTML Website][1]
+
+Additionally, the project includes the outputted HTML document of the Rmarkdown file, which can also be viewed here: [HTML Website](./R)
 
 
-
-[1]: 
