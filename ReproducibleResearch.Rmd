@@ -1,22 +1,43 @@
 ---
 title: "Chicken Weights Analysis"
 author: "Ayah Kamal"
-date: "9/28/2021"
+date: "9 - 28 - 2021"
 output:
   html_document:
     toc: true
     toc_depth: 2
     toc_float: true
+header-includes:
+    - \usepackage{sectsty}
+    - \allsectionsfont{\color{cyan}}
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{css, echo = FALSE}
+h1, #TOC>ul>li {
+  color: #619B8A;
+  font-weight: bold;
+}
+
+h2, #TOC>ul>ul>li {
+  color: white;
+  background-color: #a1c181;
+  font-size: 18px;
+  padding: 5px;
+}
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover{
+  background-color: #E5F2D7
+}
+
+```
+<p style="font-size: 16px; line-height: 1.6">
+This is an R Markdown document used to showcase an example of **Chicken Weight Analysis**. The example will be used to demonstrate different aspects learned in topics such as: <i>Data Visualization</i>, <i>Descriptive Statistics</i>, and <i>Inferential Statistics</i>.</p> 
+
 ## Descriptive Statistics 
-
-This is an R Markdown document used to showcase an example of **Chicken Weight Analysis**.  
-
 
 ```{r libraries, echo=FALSE, include=FALSE}
 library(tidyverse)
@@ -38,11 +59,16 @@ datatable(chickwts %>%
 
 
 ```{r boxplot, echo=FALSE}
-boxplot(weight~feed,
-        data = chickwts)
+ggplot(chickwts, aes(feed, weight)) +
+  geom_boxplot(fill='#FCCA46', color="#233D4D")+
+  theme_classic()
 ```
 ```{r scatterplot, echo=FALSE}
-plot.default(chickwts$feed,chickwts$weight,'p')
+ggplot(data = chickwts, aes(feed, weight, color = feed)) +
+  geom_point(shape=16, position=position_jitter(0.3)) +
+  theme_classic() +
+  scale_color_manual(values=c("#8fb3cc", "#233D4D", "#FE7F2D", "#FCCA46","#a1c181","#619B8A"))+
+  theme(legend.position = "none") 
 ```
 
 
@@ -56,5 +82,15 @@ datatable(chick_aov,
           options = list(dom = 't', ordering=FALSE))
 ```
 
-
+```{r turkey test, echo=FALSE}
+chickwts_turkey <- TukeyHSD(aov(chick_lm), conf.level=.95)
+chickwts_df <- do.call(rbind.data.frame, chickwts_turkey)
+datatable(chickwts_df,
+           options = list(
+  pageLength = 10,
+  lengthMenu = c(5, 10, 15, 20)),
+  colnames = c('Difference in Means', 'Upper 95% CI', 'Lower 95% CI', 'Adjusted p-value'),
+  rownames = 
+)
+```
 
