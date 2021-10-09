@@ -7,6 +7,6 @@ The project contains the Rmarkdown code file that showcases some of the concepts
 
 Additionally, the project includes the outputted HTML document of the Rmarkdown file, which can also be viewed here: [HTML Website](./ReproducibleResearch.html)
 
-[HTML Website](https://ayah-kamal.github.io/chickenweightanalysis/)
+[HTML Website](https://ayah-kamal.github.io/chickenweightanalysis//ReproducibleResearch.html)
 
 
