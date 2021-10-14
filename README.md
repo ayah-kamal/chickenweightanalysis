@@ -17,6 +17,11 @@ To demonstrate the mentioned concepts above using R, the following R functions a
 - turkey test
 - tidyverse
 
+## About the dataset
+The simple `chickwts` dataset consists of 2 columns:
+- `weight`
+- `feed`
+It is a built in R dataset and more information on the dataset can be found in [here](https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/chickwts)
 
 
 
